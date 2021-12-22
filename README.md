@@ -26,13 +26,12 @@ python manage.py migrate
 
 3. Rename .env.sample to .env
 
-3. Set the parameters <b>query</b> and <b>key</b> in the <b>key_query.py</b> file which is inside the *api* Directory
+4. Set the parameters <b>query</b> in the <b>query.py</b> file which is inside the *api* Directory
 <ul>
 <li>query - Any Query which is to be searched.</li>
-<li>key - Key Provided for Youtube V3 API using Google Cloud Console.</li>
 </ul>
 
-4. Run the django server using
+5. Run the django server using
 ```
 python manage.py runserver
 ```
