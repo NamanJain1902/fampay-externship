@@ -1,13 +1,12 @@
-# from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 from .models import Video
-# from datetime import datetime
+from datetime import datetime
 
 
 class JobScheduler():
     def __init__(self, obj) -> None:
         self.obj = obj
-        self.eventId = str(hash(12332132132))
+        self.eventId = str(hash(datetime.now()))
         self.scheduler = BackgroundScheduler()
 
     def __fetch(self):

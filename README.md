@@ -62,6 +62,3 @@ To search using description
     "description" : "Your_description_here" 
 }
 ```
-
-## Possible Improvements
-Currently scheduling is done by custom implementation using thread, we can setup django-apscheduler to make it robust and developer friendly. 

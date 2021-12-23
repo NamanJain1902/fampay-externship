@@ -7,19 +7,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .pagination import VideoPagination
 
-from decouple import config, Csv
-import time 
-from .query import query
-import requests
-import json
-from dateutil import parser
-import threading
-
-
-DEVELOPER_KEYS = config('DEVELOPER_KEY', cast=Csv())
-YOUTUBE_API_SERVICE_NAME = 'youtube'
-YOUTUBE_API_VERSION = 'v3'
-
 
 # Create your views here.
 def index(request):

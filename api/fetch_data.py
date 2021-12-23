@@ -1,4 +1,3 @@
-from os import kill
 from .models import Video
 from rest_framework import status
 
@@ -11,6 +10,7 @@ from dateutil import parser
 DEVELOPER_KEYS = config('DEVELOPER_KEY', cast=Csv())
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
+BASE_URL = "https://youtube.googleapis.com"
 
 
 class YoutubeAPI:
@@ -29,6 +29,10 @@ class YoutubeAPI:
 
 
     def __load_data(self, attr):
+        """Summary line.
+
+        Save fetched item to Video table.
+        """
         video = Video.objects.create(
             id = attr["id"]["videoId"], 
             title = attr["snippet"]["title"],
@@ -36,7 +40,6 @@ class YoutubeAPI:
             thumbnail_URL = attr["snippet"]["thumbnails"]["default"]["url"],
             published_at = parser.parse(attr["snippet"]["publishedAt"])
         ),
-        print(video)
         video.save()
 
 
@@ -55,7 +58,7 @@ class YoutubeAPI:
         try : 
             key = DEVELOPER_KEYS[self.key_idx]
             
-            url = f"https://youtube.googleapis.com/{YOUTUBE_API_SERVICE_NAME}/{YOUTUBE_API_VERSION}/search?part=snippet&q={self.query}&key={key}"
+            url = f"{BASE_URL}/{YOUTUBE_API_SERVICE_NAME}/{YOUTUBE_API_VERSION}/search?part=snippet&q={self.query}&key={key}"
 
             global response
             response = requests.request("GET", url, headers={}, data={})
